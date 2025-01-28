@@ -1,0 +1,31 @@
+#QUESTION3
+SELECT COUNT(*) 
+ FROM green_taxi_data 
+ WHERE trip_distance <= 1;
+
+#QUESTION4
+SELECT lpep_pickup_datetime
+ FROM green_taxi_data
+ WHERE trip_distance = (SELECT MAX(trip_distance) FROM green_taxi_data);
+
+
+#QUESTION5
+SELECT z."Zone" AS pickup_location
+ FROM green_taxi_data d
+ JOIN zones z
+ ON d."PULocationID" = z."LocationID"
+ WHERE DATE(d."lpep_pickup_datetime") = '2019-10-18'
+ GROUP BY z."Zone"
+ HAVING SUM(d."total_amount") > 13000;
+
+#QUESTION6
+SELECT drop_zones."Zone" AS dropoff_zone, 
+        MAX(d."tip_amount") AS largest_tip
+ FROM green_taxi_data d
+ JOIN zones pickup_zones ON d."PULocationID" = pickup_zones."LocationID"
+ JOIN zones drop_zones ON d."DOLocationID" = drop_zones."LocationID"
+ WHERE pickup_zones."Zone" = 'East Harlem North'
+   AND DATE(d."lpep_pickup_datetime") BETWEEN '2019-10-01' AND '2019-10-31'
+ GROUP BY drop_zones."Zone"
+ ORDER BY largest_tip DESC
+ LIMIT 1;
