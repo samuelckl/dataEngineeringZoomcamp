@@ -1,0 +1,27 @@
+id: count_yellow_row
+namespace: zoomcamp
+description: |
+  Count all yellow taxi trips from March 2021 in BigQuery.
+
+tasks:
+  - id: count_yellow_trips_march_2021
+    type: io.kestra.plugin.gcp.bigquery.Query
+    sql: |
+      SELECT COUNT(*) AS total_rows
+      FROM `dataengineering-449109.zoomcamp_dataset.yellow_tripdata`
+      WHERE EXTRACT(YEAR FROM tpep_pickup_datetime) = 2021
+        AND EXTRACT(MONTH FROM tpep_pickup_datetime) = 3;
+
+    fetch: true # Ensure the query result is fetched
+
+  - id: print_results
+    type: io.kestra.plugin.core.log.Log
+    message: "Total Yellow Taxi Trips in March 2021: {{outputs.count_yellow_trips_march_2021.rows[0].total_rows}}"
+
+pluginDefaults:
+  - type: io.kestra.plugin.gcp
+    values:
+      serviceAccount: "{{kv('GCP_CREDS')}}"
+      projectId: "dataengineering-449109"  # Ensure this is your actual project ID
+      location: "US"
+      bucket: "{{kv('GCP_BUCKET_NAME')}}"
