@@ -8,9 +8,9 @@ with tripdata as
 (
   select *,
     row_number() over(partition by vendorid, tpep_pickup_datetime) as rn
-  from `taxi-rides-ny-339813-412521`.`trips_data_all`.`yellow_tripdata`
+  from `dbt_samuelckl`.`trips_data_all`.`yellow_tripdata`
   where vendorid is not null 
-)
+) 
 select
    -- identifiers
     to_hex(md5(cast(coalesce(cast(vendorid as string), '_dbt_utils_surrogate_key_null_') || '-' || coalesce(cast(tpep_pickup_datetime as string), '_dbt_utils_surrogate_key_null_') as string))) as tripid,    

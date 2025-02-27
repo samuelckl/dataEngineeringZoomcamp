@@ -170,7 +170,7 @@ with tripdata as
 (
   select *,
     row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
-  from `taxi-rides-ny-339813-412521`.`trips_data_all`.`green_tripdata`
+  from `dbt_samuelckl`.`trips_data_all`.`green_tripdata`
   where vendorid is not null 
 )
 select
@@ -255,7 +255,7 @@ with tripdata as
 (
   select *,
     row_number() over(partition by vendorid, tpep_pickup_datetime) as rn
-  from `taxi-rides-ny-339813-412521`.`trips_data_all`.`yellow_tripdata`
+  from `dbt_samuelckl`.`trips_data_all`.`yellow_tripdata`
   where vendorid is not null 
 )
 select
@@ -454,7 +454,7 @@ with tripdata as
 (
   select *,
     row_number() over(partition by vendorid, lpep_pickup_datetime) as rn
-  from `taxi-rides-ny-339813-412521`.`trips_data_all`.`green_tripdata`
+  from `dbt_samuelckl`.`trips_data_all`.`green_tripdata`
   where vendorid is not null 
 )
 select
@@ -539,7 +539,7 @@ with tripdata as
 (
   select *,
     row_number() over(partition by vendorid, tpep_pickup_datetime) as rn
-  from `taxi-rides-ny-339813-412521`.`trips_data_all`.`yellow_tripdata`
+  from `dbt_samuelckl`.`trips_data_all`.`yellow_tripdata`
   where vendorid is not null 
 )
 select
@@ -608,24 +608,24 @@ where rn = 1
 [0m23:56:29.136058 [debug] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=dataengineering-449109&j=bq:US:90d661f1-a585-4e7f-9fff-7b0bf86b385a&page=queryresults
 [0m23:56:29.136692 [error] [Thread-3 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=dataengineering-449109&j=bq:US:90d661f1-a585-4e7f-9fff-7b0bf86b385a&page=queryresults
 [0m23:56:29.140449 [debug] [Thread-3 (]: Database Error in model stg_yellow_tripdata (models/staging/stg_yellow_tripdata.sql)
-  Access Denied: Table taxi-rides-ny-339813-412521:trips_data_all.yellow_tripdata: User does not have permission to query table taxi-rides-ny-339813-412521:trips_data_all.yellow_tripdata, or perhaps it does not exist.
+  Access Denied: Table dbt_samuelckl:trips_data_all.yellow_tripdata: User does not have permission to query table dbt_samuelckl:trips_data_all.yellow_tripdata, or perhaps it does not exist.
   compiled code at target/run/taxi_rides_ny/models/staging/stg_yellow_tripdata.sql
 [0m23:56:29.140961 [debug] [Thread-3 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'bac9f5a9-ffdc-465a-a95d-07240cad2928', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x16c9a55b0>]}
 [0m23:56:29.141602 [error] [Thread-3 (]: 3 of 5 ERROR creating sql view model zoomcamp_dataset.stg_yellow_tripdata ...... [[31mERROR[0m in 1.00s]
 [0m23:56:29.142223 [debug] [Thread-3 (]: Finished running node model.taxi_rides_ny.stg_yellow_tripdata
 [0m23:56:29.142703 [debug] [Thread-7 (]: Marking all children of 'model.taxi_rides_ny.stg_yellow_tripdata' to be skipped because of status 'error'.  Reason: Database Error in model stg_yellow_tripdata (models/staging/stg_yellow_tripdata.sql)
-  Access Denied: Table taxi-rides-ny-339813-412521:trips_data_all.yellow_tripdata: User does not have permission to query table taxi-rides-ny-339813-412521:trips_data_all.yellow_tripdata, or perhaps it does not exist.
+  Access Denied: Table dbt_samuelckl:trips_data_all.yellow_tripdata: User does not have permission to query table dbt_samuelckl:trips_data_all.yellow_tripdata, or perhaps it does not exist.
   compiled code at target/run/taxi_rides_ny/models/staging/stg_yellow_tripdata.sql.
 [0m23:56:29.144202 [debug] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=dataengineering-449109&j=bq:US:e9872861-f363-433e-a942-1675c849c7b8&page=queryresults
 [0m23:56:29.144744 [error] [Thread-2 (]: BigQuery adapter: https://console.cloud.google.com/bigquery?project=dataengineering-449109&j=bq:US:e9872861-f363-433e-a942-1675c849c7b8&page=queryresults
 [0m23:56:29.147954 [debug] [Thread-2 (]: Database Error in model stg_green_tripdata (models/staging/stg_green_tripdata.sql)
-  Access Denied: Table taxi-rides-ny-339813-412521:trips_data_all.green_tripdata: User does not have permission to query table taxi-rides-ny-339813-412521:trips_data_all.green_tripdata, or perhaps it does not exist.
+  Access Denied: Table dbt_samuelckl:trips_data_all.green_tripdata: User does not have permission to query table dbt_samuelckl:trips_data_all.green_tripdata, or perhaps it does not exist.
   compiled code at target/run/taxi_rides_ny/models/staging/stg_green_tripdata.sql
 [0m23:56:29.148428 [debug] [Thread-2 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'bac9f5a9-ffdc-465a-a95d-07240cad2928', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x16c9ad160>]}
 [0m23:56:29.148921 [error] [Thread-2 (]: 2 of 5 ERROR creating sql view model zoomcamp_dataset.stg_green_tripdata ....... [[31mERROR[0m in 1.01s]
 [0m23:56:29.149371 [debug] [Thread-2 (]: Finished running node model.taxi_rides_ny.stg_green_tripdata
 [0m23:56:29.149747 [debug] [Thread-7 (]: Marking all children of 'model.taxi_rides_ny.stg_green_tripdata' to be skipped because of status 'error'.  Reason: Database Error in model stg_green_tripdata (models/staging/stg_green_tripdata.sql)
-  Access Denied: Table taxi-rides-ny-339813-412521:trips_data_all.green_tripdata: User does not have permission to query table taxi-rides-ny-339813-412521:trips_data_all.green_tripdata, or perhaps it does not exist.
+  Access Denied: Table dbt_samuelckl:trips_data_all.green_tripdata: User does not have permission to query table dbt_samuelckl:trips_data_all.green_tripdata, or perhaps it does not exist.
   compiled code at target/run/taxi_rides_ny/models/staging/stg_green_tripdata.sql.
 [0m23:56:29.150426 [debug] [Thread-4 (]: Began running node model.taxi_rides_ny.fact_trips
 [0m23:56:29.151057 [info ] [Thread-4 (]: 4 of 5 SKIP relation zoomcamp_dataset.fact_trips ............................... [[33mSKIP[0m]
@@ -652,11 +652,11 @@ where rn = 1
   compiled code at target/run/taxi_rides_ny/models/core/dim_zones.sql
 [0m23:56:29.183952 [info ] [MainThread]: 
 [0m23:56:29.184133 [error] [MainThread]:   Database Error in model stg_yellow_tripdata (models/staging/stg_yellow_tripdata.sql)
-  Access Denied: Table taxi-rides-ny-339813-412521:trips_data_all.yellow_tripdata: User does not have permission to query table taxi-rides-ny-339813-412521:trips_data_all.yellow_tripdata, or perhaps it does not exist.
+  Access Denied: Table dbt_samuelckl:trips_data_all.yellow_tripdata: User does not have permission to query table dbt_samuelckl:trips_data_all.yellow_tripdata, or perhaps it does not exist.
   compiled code at target/run/taxi_rides_ny/models/staging/stg_yellow_tripdata.sql
 [0m23:56:29.184286 [info ] [MainThread]: 
 [0m23:56:29.184461 [error] [MainThread]:   Database Error in model stg_green_tripdata (models/staging/stg_green_tripdata.sql)
-  Access Denied: Table taxi-rides-ny-339813-412521:trips_data_all.green_tripdata: User does not have permission to query table taxi-rides-ny-339813-412521:trips_data_all.green_tripdata, or perhaps it does not exist.
+  Access Denied: Table dbt_samuelckl:trips_data_all.green_tripdata: User does not have permission to query table dbt_samuelckl:trips_data_all.green_tripdata, or perhaps it does not exist.
   compiled code at target/run/taxi_rides_ny/models/staging/stg_green_tripdata.sql
 [0m23:56:29.184610 [info ] [MainThread]: 
 [0m23:56:29.184799 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=3 SKIP=2 TOTAL=5
